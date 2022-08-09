@@ -1,5 +1,5 @@
 import React from "react";
-import useCourseStore from "../App/courseStore";
+import { useCourseStore } from "../App/courseStore";
 
 const CourseList = () => {
   const { courses, removeCourse, toggleCourseStatus } = useCourseStore(
@@ -13,37 +13,41 @@ const CourseList = () => {
   return (
     <>
       <ul>
-        {courses.map((course, id) => {
-          return (
-            <React.Fragment key={id}>
-              <li
-                className="course-item"
-                style={{
-                  backgroundColor: course.completed ? "green" : "white",
-                }}
-              >
-                <span className="course-item-col-1">
-                  <input
-                    type="checkbox"
-                    checked={course.completed}
-                    onChange={(e) => {
-                      toggleCourseStatus(course.id);
-                    }}
-                  />
-                </span>
-                <span className="course-title">{course.title}</span>
-                <button
-                  className="delete-btn"
-                  onClick={() => {
-                    removeCourse(course.id);
+        {!courses.length > 0 ? (
+          <h1>You have no courses available</h1>
+        ) : (
+          courses.map((course, id) => {
+            return (
+              <React.Fragment key={id}>
+                <li
+                  className="course-item"
+                  style={{
+                    backgroundColor: course.completed ? "#555" : "white",
                   }}
                 >
-                  Delete Course
-                </button>
-              </li>
-            </React.Fragment>
-          );
-        })}
+                  <span className="course-item-col-1">
+                    <input
+                      type="checkbox"
+                      checked={course.completed}
+                      onChange={(e) => {
+                        toggleCourseStatus(course.id);
+                      }}
+                    />
+                  </span>
+                  <span className="course-title">{course.title}</span>
+                  <button
+                    className="delete-btn"
+                    onClick={() => {
+                      removeCourse(course.id);
+                    }}
+                  >
+                    Delete Course
+                  </button>
+                </li>
+              </React.Fragment>
+            );
+          })
+        )}
       </ul>
     </>
   );

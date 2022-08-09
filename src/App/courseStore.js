@@ -24,12 +24,31 @@ const courseStore = (set) => ({
   },
 });
 
-const useCourseStore = create(
+const settingStore = (set) => ({
+  dark: false,
+  toggleDarkMode: () => set((state) => ({ dark: !state.dark })),
+});
+
+const peopleStore = (set) => ({
+  people: ["habib", "izzat", "sekinat", "ameenat", "samiat"],
+  addPerson: (person) =>
+    set((state) => ({
+      people: [...state.people, person],
+    })),
+});
+
+export const useCourseStore = create(
   devtools(
     persist(courseStore, {
-      name: "courses"
+      name: "courses",
     })
   )
-)
+);
 
-export default useCourseStore
+export const useSettingStore = create(
+  devtools(persist(settingStore, { name: "theme" }))
+);
+
+export const usePeopleStore = create(
+  devtools(persist(peopleStore, { name: "people" }))
+);
