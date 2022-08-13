@@ -5,6 +5,7 @@ import CourseList from "./components/CourseList";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Zustand2 from "./components/Zustand2";
+import Register from "./components/Register";
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/zustand2" element={<Zustand2 />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );

@@ -5,6 +5,7 @@ const AddPerson = () => {
   const inputRef = useRef()
   const addPerson = usePeopleStore((state) => state.addPerson);
   const addNewPerson = () => {
+    if (inputRef.current.value === "") return;
     addPerson(inputRef.current.value);
     inputRef.current.value = ""
   }

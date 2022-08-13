@@ -123,3 +123,18 @@ ul {
     font-weight: bold;
   }
 }
+
+label {
+  font-size: 0.9rem;
+}
+
+input.form-control,
+input.form-control:focus {
+  background: #f0f0ff;
+}
+
+.error {
+  position: absolute;
+  color: red;
+  font-size: 0.6rem;
+}
