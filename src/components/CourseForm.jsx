@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { useCourseStore } from "../App/courseStore";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const CourseForm = () => {
   const addCourse = useCourseStore((state) => state.addCourse);
   const [courseTitle, setCourseTitle] = useState("");
 
   const handleSubmit = () => {
-    if (!courseTitle) return alert("please enter a course title");
+    if (!courseTitle)
+      return toast.error("please enter a course title", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     addCourse({
       id: new Date().getTime(),
       title: courseTitle,
       completed: false,
+    });
+    toast.success("Successfully added course", {
+      position: toast.POSITION.BOTTOM_RIGHT,
     });
     setCourseTitle("");
   };

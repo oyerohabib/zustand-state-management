@@ -1,5 +1,8 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const courseStore = (set) => ({
   courses: [],
@@ -12,6 +15,9 @@ const courseStore = (set) => ({
     set((state) => ({
       courses: state.courses.filter((course) => course.id !== courseId),
     }));
+    toast.error("successfully removed course", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   },
   toggleCourseStatus: (courseId) => {
     set((state) => ({
@@ -21,6 +27,9 @@ const courseStore = (set) => ({
           : course
       ),
     }));
+    toast.info("course status toggled", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   },
 });
 

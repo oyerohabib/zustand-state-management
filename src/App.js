@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Zustand2 from "./components/Zustand2";
 
+
 const Home = () => {
 
   return (
